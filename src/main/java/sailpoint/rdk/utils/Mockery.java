@@ -1,5 +1,6 @@
 package sailpoint.rdk.utils;
 
+import org.mockito.Mockito;
 import sailpoint.object.Application;
 import sailpoint.object.Attributes;
 import sailpoint.object.Identity;
@@ -7,8 +8,6 @@ import sailpoint.object.Link;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.mockito.Mockito.when;
 
 /**
  * Utilities related to mocking up objects for use in IDN tests
@@ -23,44 +22,44 @@ public class Mockery {
         for(String key : attributes.keySet()) {
             Object answer = attributes.get(key);
             if (answer instanceof String) {
-                when(mock.getStringAttribute(key)).thenReturn((String) answer);
+                Mockito.when(mock.getStringAttribute(key)).thenReturn((String) answer);
 
                 switch (key) {
                     case "name":
-                        when(mock.getName()).thenReturn((String) answer);
+                        Mockito.when(mock.getName()).thenReturn((String) answer);
                         break;
                     case "firstName":
-                        when(mock.getFirstname()).thenReturn((String) answer);
+                        Mockito.when(mock.getFirstname()).thenReturn((String) answer);
                         break;
                     case "lastName":
-                        when(mock.getLastname()).thenReturn((String) answer);
+                        Mockito.when(mock.getLastname()).thenReturn((String) answer);
                         break;
                     case "uid":
-                        when(mock.getUid()).thenReturn((String) answer);
+                        Mockito.when(mock.getUid()).thenReturn((String) answer);
                         break;
                     case "email":
-                        when(mock.getEmail()).thenReturn((String) answer);
+                        Mockito.when(mock.getEmail()).thenReturn((String) answer);
                         break;
                     case "manager.id":
                     case "managerId":
-                        when(mock.getManager().getId()).thenReturn((String) answer);
+                        Mockito.when(mock.getManager().getId()).thenReturn((String) answer);
                         break;
                     case "manager.name":
                     case "managerName":
-                        when(mock.getManager().getName()).thenReturn((String) answer);
+                        Mockito.when(mock.getManager().getName()).thenReturn((String) answer);
                         break;
                     case "id":
-                        when(mock.getId()).thenReturn((String) answer);
+                        Mockito.when(mock.getId()).thenReturn((String) answer);
                         break;
                 }
             }
-            when(mock.getAttribute(key)).thenReturn(answer);
+            Mockito.when(mock.getAttribute(key)).thenReturn(answer);
         }
 
         Attributes<String, Object> attrs = new Attributes<>();
         attrs.putAll(attributes);
 
-        when(mock.getAttributes()).thenReturn(attrs);
+        Mockito.when(mock.getAttributes()).thenReturn(attrs);
     }
 
     /**
@@ -73,16 +72,16 @@ public class Mockery {
             Object answer = attributes.get(key);
             switch(key) {
                 case "id":
-                    when(mock.getId()).thenReturn((String) answer);
+                    Mockito.when(mock.getId()).thenReturn((String) answer);
                     break;
                 case "name":
-                    when(mock.getName()).thenReturn((String) answer);
+                    Mockito.when(mock.getName()).thenReturn((String) answer);
                     break;
                 default:
                     if (answer instanceof String) {
-                        when(mock.getStringAttributeValue(key)).thenReturn((String) answer);
+                        Mockito.when(mock.getStringAttributeValue(key)).thenReturn((String) answer);
                     } else if (answer instanceof Integer) {
-                        when(mock.getIntAttributeValue(key)).thenReturn((Integer) answer);
+                        Mockito.when(mock.getIntAttributeValue(key)).thenReturn((Integer) answer);
                     }
             }
         }
@@ -90,7 +89,7 @@ public class Mockery {
         Attributes<String, Object> attrs = new Attributes<>();
         attrs.putAll(attributes);
 
-        when(mock.getAttributes()).thenReturn(attrs);
+        Mockito.when(mock.getAttributes()).thenReturn(attrs);
     }
 
     /**
@@ -103,19 +102,19 @@ public class Mockery {
             Object answer = attributes.get(key);
             switch(key) {
                 case "nativeIdentity":
-                    when(mock.getNativeIdentity()).thenReturn((String) answer);
+                    Mockito.when(mock.getNativeIdentity()).thenReturn((String) answer);
                     break;
                 case "application.name":
                 case "applicationName":
-                    when(mock.getApplicationName()).thenReturn((String) answer);
+                    Mockito.when(mock.getApplicationName()).thenReturn((String) answer);
                     break;
                 case "application.id":
                 case "applicationId":
-                    when(mock.getApplicationId()).thenReturn((String) answer);
+                    Mockito.when(mock.getApplicationId()).thenReturn((String) answer);
                     break;
                 default:
-                    when(mock.getAttribute(key)).thenReturn(answer);
-                    when(mock.getAttributes().get(key)).thenReturn(answer);
+                    Mockito.when(mock.getAttribute(key)).thenReturn(answer);
+                    Mockito.when(mock.getAttributes().get(key)).thenReturn(answer);
             }
         }
     }
@@ -130,51 +129,51 @@ public class Mockery {
             String answer = attributes.get(key);
             switch (key) {
                 case "name":
-                    when(mock.getName()).thenReturn(answer);
+                    Mockito.when(mock.getName()).thenReturn(answer);
                     break;
                 case "firstName":
-                    when(mock.getFirstName()).thenReturn(answer);
+                    Mockito.when(mock.getFirstName()).thenReturn(answer);
                     break;
                 case "lastName":
-                    when(mock.getLastName()).thenReturn(answer);
+                    Mockito.when(mock.getLastName()).thenReturn(answer);
                     break;
                 case "uid":
-                    when(mock.getUid()).thenReturn(answer);
+                    Mockito.when(mock.getUid()).thenReturn(answer);
                     break;
                 case "email":
-                    when(mock.getEmail()).thenReturn(answer);
+                    Mockito.when(mock.getEmail()).thenReturn(answer);
                     break;
                 case "manager.id":
                 case "managerId":
-                    when(mock.getManagerId()).thenReturn(answer);
+                    Mockito.when(mock.getManagerId()).thenReturn(answer);
                     break;
                 case "manager.name":
                 case "managerName":
-                    when(mock.getManagerName()).thenReturn(answer);
+                    Mockito.when(mock.getManagerName()).thenReturn(answer);
                     break;
                 case "lifecycleState":
-                    when(mock.getLifecycleState()).thenReturn(answer);
+                    Mockito.when(mock.getLifecycleState()).thenReturn(answer);
                     break;
                 case "employeeNumber":
-                    when(mock.getEmployeeNumber()).thenReturn(answer);
+                    Mockito.when(mock.getEmployeeNumber()).thenReturn(answer);
                     break;
                 case "phone":
-                    when(mock.getPhone()).thenReturn(answer);
+                    Mockito.when(mock.getPhone()).thenReturn(answer);
                     break;
                 case "id":
-                    when(mock.getId()).thenReturn(answer);
+                    Mockito.when(mock.getId()).thenReturn(answer);
                     break;
                 case "personalEmail":
-                    when(mock.getPersonalEmail()).thenReturn(answer);
+                    Mockito.when(mock.getPersonalEmail()).thenReturn(answer);
                     break;
                 case "displayName":
-                    when(mock.getDisplayName()).thenReturn(answer);
+                    Mockito.when(mock.getDisplayName()).thenReturn(answer);
                     break;
             }
         }
 
         Map<String, Object> attrs = new HashMap<>(attributes);
-        when(mock.getAttributes()).thenReturn(attrs);
+        Mockito.when(mock.getAttributes()).thenReturn(attrs);
     }
 
 }
